@@ -160,8 +160,8 @@ class RelativeTimeFromNow
   timeElapsed: ->
     ms  = @date.getTime() - new Date().getTime()
     sec = Math.round ms  / 1000
-    min = Math.round sec / 60
-    hr  = Math.round min / 60
+    min = Math.floor sec / 60
+    hr  = Math.floor min / 60
 
     if ms < 0
       null
@@ -170,7 +170,7 @@ class RelativeTimeFromNow
     else if min < 60
       "#{min}m"
     else
-      "#{min}m#{hr}h"
+      "#{hr}h#{min - hr*60}m"
 
 
 domLoaded = false
