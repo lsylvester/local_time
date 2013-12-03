@@ -53,6 +53,17 @@ Displays the relative amount of time passed. With age, the descriptions transiti
 * This year: "on Nov 17"
 * Last year: "on Jan 31, 2012"
 
+#### Time from now helper
+
+```erb
+<%= local_time_from_now(time) %>
+```
+
+Displays the relative amount of time passed. With age, the descriptions transition from specific quantities to general dates. The `<time>` elements are updated every 60 seconds. Examples (in quotes):
+
+* Recent: "1s", "1m", "1h32m"
+* Tomorrow: "5:22pm"
+
 #### Installation
 
 1. Add `gem 'local_time'` to your Gemfile.

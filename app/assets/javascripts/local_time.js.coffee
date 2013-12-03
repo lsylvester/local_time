@@ -147,6 +147,32 @@ class RelativeTimeAgo
     strftime @date, '%l:%M%P'
 
 
+class RelativeTimeFromNow
+  @generate: (date) ->
+    new this(date).toString()
+
+  constructor: (@date) ->
+    @calendarDate = CalendarDate.fromDate @date
+
+  toString: ->
+    @timeElapsed()
+
+  timeElapsed: ->
+    ms  = @date.getTime() - new Date().getTime()
+    sec = Math.round ms  / 1000
+    min = Math.round sec / 60
+    hr  = Math.round min / 60
+
+    if ms < 0
+      null
+    else if sec < 60
+      "#{sec}s"
+    else if min < 60
+      "#{min}m"
+    else
+      "#{min}m#{hr}h"
+
+
 domLoaded = false
 
 update = (callback) ->
@@ -187,6 +213,9 @@ document.addEventListener "DOMContentLoaded", ->
           strftime time, format
         when "time-ago"
           RelativeTimeAgo.generate time
+        when "time-from-now"
+          RelativeTimeFromNow.generate time
+
 
   setInterval ->
     event = document.createEvent "Events"

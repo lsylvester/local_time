@@ -19,6 +19,11 @@ module LocalTimeHelper
     time_tag time, time.strftime('%B %e, %Y %l:%M%P'), data: { local: 'time-ago' }
   end
 
+  def local_time_from_now(time)
+    time = utc_time(time)
+    time_tag time, time.strftime('%B %e, %Y %l:%M%P'), data: { local: 'time-from-now' }
+  end
+
   def utc_time(time_or_date)
     if time_or_date.respond_to?(:in_time_zone)
       time_or_date.in_time_zone.utc
