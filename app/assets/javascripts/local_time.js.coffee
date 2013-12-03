@@ -221,4 +221,4 @@ document.addEventListener "DOMContentLoaded", ->
     event = document.createEvent "Events"
     event.initEvent "time:elapse", true, true
     document.dispatchEvent event
-  , 60 * 1000
+  , 1000
